@@ -9,19 +9,19 @@ export default new Vuex.Store({
       {
         id: 1,
         title: 'Wake up',
-        time: new Date('2021-09-18 08:30'),
+        dueDate: '2021-09-25',
         done: false,
       },
       {
         id: 2,
         title: 'Get bananas',
-        time: new Date('2021-09-18 09:00'),
+        dueDate: '2021-09-26',
         done: false,
       },
       {
         id: 3,
         title: 'Eat bananas',
-        time: new Date('2021-09-18 09:30'),
+        dueDate: '2021-09-24',
         done: false,
       },
     ],
@@ -36,7 +36,7 @@ export default new Vuex.Store({
       let newTask = {
         id: Date.now(),
         title: newTaskTitle,
-        time: new Date(),
+        dueDate: new Date(),
         done: false,
       }
 
@@ -44,12 +44,23 @@ export default new Vuex.Store({
     },
 
     doneTask(state, id) {
-      let task = state.tasks.filter(t => t.id == id)[0]
+      let task = state.tasks.filter(t => t.id === id)[0]
       task.done = !task.done
     },
 
     deleteTask(state, id) {
       state.tasks = state.tasks.filter(t => t.id !== id)
+    },
+
+    updateTaskTitle(state, payload) {
+      let task = state.tasks.filter(t => t.id === payload.id)[0]
+      task.title = payload.title
+      task.dueDate = payload.dueDate
+    },
+
+    updateTaskDueDate(state, payload) {
+      let task = state.tasks.filter(t => t.id === payload.id)[0]
+      task.dueDate = payload.dueDate
     },
 
     showSnackbar(state, actionText) {
@@ -78,7 +89,16 @@ export default new Vuex.Store({
     deleteTask({ commit }, id) {
       commit('deleteTask', id)
       commit('showSnackbar', 'Task deleted!')
-    }
+    },
+
+    updateTaskTitle({ commit }, payload) {
+      commit('updateTaskTitle', payload)
+      commit('showSnackbar', 'Task updated!')
+    }, 
+    updateTaskDueDate({ commit }, payload) {
+      commit('updateTaskDueDate', payload)
+      commit('showSnackbar', 'Task Due Date updated!')
+    }, 
   },
   modules: {
   }

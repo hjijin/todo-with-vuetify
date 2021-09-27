@@ -18,12 +18,14 @@
           >
             {{ task.title }}
           </v-list-item-title>
-          <v-list-item-subtitle
-            :class="{ 'text-decoration-line-through' : task.done }"
-          >
-            {{ moment(task.time).format('LT') }}
-          </v-list-item-subtitle>
         </v-list-item-content>
+
+        <v-list-item-action v-if="task.dueDate">
+          <v-list-item-action-text>
+            <v-icon small>mdi-calendar</v-icon>
+            {{ task.dueDate | niceDate }}
+          </v-list-item-action-text>
+        </v-list-item-action>
 
         <v-list-item-action>
           <task-menu :task="task"/>
@@ -36,10 +38,17 @@
 </template>
 
 <script>
+  import moment from 'moment'
+
 	export default {
     props: ['task'],
     components: {
       'task-menu': require('@/components/Todo/TaskMenu.vue').default,
-    }
+    },
+    filters: {
+      niceDate(date) {
+        return moment(date).format("MMM D")
+      },
+    },
 	}
 </script>
