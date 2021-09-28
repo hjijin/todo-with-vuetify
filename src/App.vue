@@ -68,7 +68,9 @@
           <search />
         </v-row>
         <v-row>
-          <v-app-bar-title class="text-h4 ml-4">Vuetify Todo</v-app-bar-title>
+          <v-app-bar-title class="text-h4 ml-4">
+            {{ $store.state.appTitle }}
+          </v-app-bar-title>
         </v-row>
         <v-row>
           <live-date-time />
