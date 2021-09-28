@@ -1,21 +1,38 @@
 <template>
 	<v-list
     subheader
-    two-line
     flat
   >
-    <task
-      v-for="task in $store.getters.taskfilterd"
-      :key="task.id"
-      :task="task"
-    />
+    <draggable
+      v-model="tasks"
+      handle=".handle"
+    >
+      <task
+        v-for="task in tasks"
+        :key="task.id"
+        :task="task"
+      />
+    </draggable>
   </v-list>
 </template>
 
 <script>
+  import draggable from "vuedraggable";
+
 	export default {
+    computed: {
+      tasks: {
+        get() {
+          return this.$store.getters.taskfilterd
+        },
+        set(value) {
+          this.$store.commit('setTasks', value)
+        }
+      }
+    },
     components: {
       'task': require('@/components/Todo/Task').default,
+      draggable,
     }
 	}
 </script>
