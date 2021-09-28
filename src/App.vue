@@ -2,20 +2,28 @@
   <v-app id="inspire">
     <v-navigation-drawer
       v-model="drawer"
+      :mobile-breakpoint="760"
       app
     >
-      <v-list-item>
-        <v-list-item-content>
-          <v-list-item-title class="text-h6">
-            Vuetify Todo
-          </v-list-item-title>
-          <v-list-item-subtitle>
-            Best Todo Ever!
-          </v-list-item-subtitle>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
+      <v-img
+        class="pa-4 pt-6"
+        src="mountains.jpg"
+        gradient="to top right, rgba(19,84,122,.5), rgba(128,208,199,.8)"
+        height="170"
+      >
+        <v-avatar size="70" class="mb-2">
+          <img
+            src="https://cdn.vuetifyjs.com/images/john.jpg"
+            alt="Jim"
+          >
+        </v-avatar>
+        <div class="white--text text-subtitile-1 font-weight-bold">
+          Jim Huang
+        </div>
+        <div class="white--text text-subtitile-2">
+          hjijin.gz@gmail.com
+        </div>
+      </v-img>
 
       <v-list
         dense
@@ -53,7 +61,7 @@
         ></v-img>
       </template>
 
-      <v-container class="pa-0">
+      <v-container class="header-container pa-0">
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
@@ -91,3 +99,8 @@
     }
   }
 </script>
+
+<style lang="sass">
+  .header-container
+    max-width: none !important
+</style>
