@@ -94,6 +94,9 @@
       ],
       drawer: null 
     }),
+    mounted(){
+      this.$store.dispatch('getTasks')
+    },
     components: {
       'search': require('@/components/Tools/Search.vue').default,
       'live-date-time': require('@/components/Tools/LiveDateTime.vue').default,

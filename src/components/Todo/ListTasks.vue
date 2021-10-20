@@ -26,7 +26,7 @@
           return this.$store.getters.taskfilterd
         },
         set(value) {
-          this.$store.commit('setTasks', value)
+          this.$store.dispatch('setTasks', value)
         }
       }
     },
